@@ -15,6 +15,7 @@ import { createInvoice } from '@/app/lib/actions';
 export default function Form({ customers }: { customers: CustomerField[] }) {
   const initialState = { message: null, errors: {} };
   const [state, dispatch] = useFormState(createInvoice, initialState);
+  // console.log(state); допоміжний
 
   return (
     <form action={dispatch}>
@@ -130,6 +131,11 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                   {error}
                 </p>
               ))}
+          </div>
+          <div aria-live="polite" aria-atomic="true">
+            {state.message && (
+              <p className="mt-2 text-sm text-red-500">{state.message}</p>
+            )}
           </div>
         </fieldset>
       </div>
